@@ -149,19 +149,19 @@
             const purpose = document.getElementById("purpose").value;
             const age = document.getElementById("age").value;
 
-            // 추천 도서 데이터 (예시)
+            // 추천 도서 데이터 (예시, 실제 도서 이미지 URL 적용)
             const books = {
                 "소설": [
-                    { title: "소설 1", img: "https://via.placeholder.com/80x120?text=Book1", description: "감동적인 이야기" },
-                    { title: "소설 2", img: "https://via.placeholder.com/80x120?text=Book2", description: "흥미진진한 스토리" },
-                    { title: "소설 3", img: "https://via.placeholder.com/80x120?text=Book3", description: "감성적인 소설" },
-                    { title: "소설 4", img: "https://via.placeholder.com/80x120?text=Book4", description: "인생을 바꾸는 이야기" }
+                    { title: "어린 왕자", img: "https://images-na.ssl-images-amazon.com/images/I/71NHjBOreHL.jpg", description: "어린 왕자의 감동적인 이야기" },
+                    { title: "1984", img: "https://images-na.ssl-images-amazon.com/images/I/41kM5Wz7m2L._SX317_BO1,204,203,200_.jpg", description: "조지 오웰의 디스토피아 소설" },
+                    { title: "해리 포터와 마법사의 돌", img: "https://images-na.ssl-images-amazon.com/images/I/71IzVqOhdJL.jpg", description: "마법의 세계로의 첫 걸음" },
+                    { title: "연금술사", img: "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg", description: "자신의 꿈을 찾아 떠나는 여정" }
                 ],
                 "비즈니스/자기계발": [
-                    { title: "비즈니스 1", img: "https://via.placeholder.com/80x120?text=Business1", description: "경영 전략" },
-                    { title: "비즈니스 2", img: "https://via.placeholder.com/80x120?text=Business2", description: "성공적인 자기계발" },
-                    { title: "비즈니스 3", img: "https://via.placeholder.com/80x120?text=Business3", description: "효율적인 팀워크" },
-                    { title: "비즈니스 4", img: "https://via.placeholder.com/80x120?text=Business4", description: "리더십 기술" }
+                    { title: "자기 혁명", img: "https://images-na.ssl-images-amazon.com/images/I/81nKxpaMmlL.jpg", description: "성공적인 자기계발을 위한 실용적인 조언" },
+                    { title: "원칙", img: "https://images-na.ssl-images-amazon.com/images/I/91chTBxJgeL.jpg", description: "인생과 비즈니스에서 중요한 원칙" },
+                    { title: "그릿", img: "https://images-na.ssl-images-amazon.com/images/I/81Qzrd-mQDL.jpg", description: "성공의 비밀, 끈기와 열정" },
+                    { title: "넥스트레벨", img: "https://images-na.ssl-images-amazon.com/images/I/81bd2pvhcQL.jpg", description: "자기계발을 위한 최고의 책" }
                 ],
                 // 다른 장르에 대한 도서 목록도 추가 가능
             };
