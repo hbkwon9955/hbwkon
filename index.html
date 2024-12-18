@@ -3,46 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub 테스트 페이지</title>
+    <title>페이지 전환 예시</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
             text-align: center;
-        }
-        .content {
             padding: 20px;
-            text-align: center;
         }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>GitHub 테스트 페이지</h1>
-    </header>
-    <div class="content">
-        <h2>안녕하세요, GitHub Pages!</h2>
-        <p>이 페이지는 GitHub에서 호스팅되는 HTML 테스트 페이지입니다.테스트하기</p>
-        <p>GitHub에서 이 페이지를 호스팅하고 있습니다.테스트하기</p>
+
+    <h1>첫 번째 화면</h1>
+    <button class="button" id="button1">1</button>
+
+    <!-- 두 번째 화면 -->
+    <div id="page2" class="hidden">
+        <h1>두 번째 화면</h1>
+        <button class="button" id="button2">2</button>
+        <button class="button" id="button3">3</button>
     </div>
-    <footer>
-        <p>GitHub 페이지에서 생성된 테스트입니다.</p>
-    </footer>
+
+    <!-- 세 번째 화면 (페이지 2) -->
+    <div id="page2Content" class="hidden">
+        <h1>페이지 2 내용</h1>
+        <p>이 페이지는 2번 버튼을 눌렀을 때 표시됩니다.</p>
+    </div>
+
+    <!-- 네 번째 화면 (페이지 3) -->
+    <div id="page3Content" class="hidden">
+        <h1>페이지 3 내용</h1>
+        <p>이 페이지는 3번 버튼을 눌렀을 때 표시됩니다.</p>
+    </div>
+
+    <script>
+        // 첫 번째 버튼을 눌렀을 때, 두 번째 화면으로 이동
+        document.getElementById('button1').addEventListener('click', function() {
+            document.querySelector('h1').innerHTML = "두 번째 화면으로 이동";
+            document.getElementById('button1').classList.add('hidden');  // 첫 번째 버튼 숨기기
+            document.getElementById('page2').classList.remove('hidden'); // 두 번째 페이지 보이기
+        });
+
+        // 두 번째 버튼을 눌렀을 때, 페이지 2로 이동
+        document.getElementById('button2').addEventListener('click', function() {
+            document.getElementById('page2').classList.add('hidden');   // 두 번째 페이지 숨기기
+            document.getElementById('page2Content').classList.remove('hidden');  // 페이지 2 내용 보이기
+        });
+
+        // 세 번째 버튼을 눌렀을 때, 페이지 3으로 이동
+        document.getElementById('button3').addEventListener('click', function() {
+            document.getElementById('page2').classList.add('hidden');   // 두 번째 페이지 숨기기
+            document.getElementById('page3Content').classList.remove('hidden');  // 페이지 3 내용 보이기
+        });
+    </script>
+
 </body>
 </html>
