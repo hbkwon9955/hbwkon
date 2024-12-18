@@ -10,7 +10,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #6a99ff, #3f6cc3); /* 파란색 그라데이션 */
@@ -20,25 +20,27 @@
             height: 100vh;
             overflow: hidden;
             color: white;
+            flex-direction: column;
+            text-align: center;
         }
-        
+
         .glass {
-            background: rgba(255, 255, 255, 0.1); /* 반투명 배경 */
-            backdrop-filter: blur(10px); /* 흐릿한 배경 효과 */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 30px;
             width: 350px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         h1 {
             font-size: 36px;
             margin-bottom: 20px;
         }
-        
-        button {
-            background-color: #0056b3; /* 파란색 버튼 */
+
+        select, button {
+            background-color: #0056b3;
             border: none;
             padding: 10px 20px;
             color: white;
@@ -47,21 +49,148 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 30px; /* 버튼 위쪽에 여백 추가 */
+            margin-top: 20px;
+        }
+
+        select {
+            width: 100%;
+            font-size: 16px;
         }
 
         button:hover {
-            background-color: #003d82; /* 버튼 호버 시 더 어두운 파란색 */
+            background-color: #003d82;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .book {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .book img {
+            width: 80px;
+            height: 120px;
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+
+        .book-info {
+            text-align: left;
+        }
+
+        .book-info h3 {
+            margin-bottom: 5px;
+        }
+
     </style>
 </head>
 <body>
     <div class="glass">
         <h1>신한EDU 도서 추천 서비스</h1>
-        <p>2025년 1월 도서를 추천받을 수 있는 서비스 입니다.</p>
-        <button>시작하기</button>
+        <p>아래의 질문에 답하고, 나에게 맞는 도서를 추천받아보세요.</p>
+        
+        <!-- 설문 항목 -->
+        <div class="question">
+            <label for="genre">1. 선호하는 장르</label>
+            <select id="genre">
+                <option value="소설">소설</option>
+                <option value="비즈니스/자기계발">비즈니스/자기계발</option>
+                <option value="역사/사회">역사/사회</option>
+                <option value="과학/기술">과학/기술</option>
+                <option value="예술/문화">예술/문화</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="purpose">2. 도서 목적</label>
+            <select id="purpose">
+                <option value="지식 습득">지식 습득</option>
+                <option value="자기계발">자기계발</option>
+                <option value="재미와 오락">재미와 오락</option>
+                <option value="문제 해결 및 실용적인 정보">문제 해결 및 실용적인 정보</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="age">3. 추천 대상 연령대</label>
+            <select id="age">
+                <option value="청소년">청소년</option>
+                <option value="20대">20대</option>
+                <option value="30대">30대</option>
+                <option value="40대 이상">40대 이상</option>
+            </select>
+        </div>
+
+        <button onclick="getRecommendations()">추천 도서 보기</button>
     </div>
+
+    <!-- 추천 결과 -->
+    <div class="result" id="result">
+        <h2>추천 도서</h2>
+        <div id="books"></div>
+    </div>
+
+    <script>
+        function getRecommendations() {
+            const genre = document.getElementById("genre").value;
+            const purpose = document.getElementById("purpose").value;
+            const age = document.getElementById("age").value;
+
+            // 추천 도서 데이터 (예시)
+            const books = {
+                "소설": [
+                    { title: "소설 1", img: "https://via.placeholder.com/80x120?text=Book1", description: "감동적인 이야기" },
+                    { title: "소설 2", img: "https://via.placeholder.com/80x120?text=Book2", description: "흥미진진한 스토리" },
+                    { title: "소설 3", img: "https://via.placeholder.com/80x120?text=Book3", description: "감성적인 소설" },
+                    { title: "소설 4", img: "https://via.placeholder.com/80x120?text=Book4", description: "인생을 바꾸는 이야기" }
+                ],
+                "비즈니스/자기계발": [
+                    { title: "비즈니스 1", img: "https://via.placeholder.com/80x120?text=Business1", description: "경영 전략" },
+                    { title: "비즈니스 2", img: "https://via.placeholder.com/80x120?text=Business2", description: "성공적인 자기계발" },
+                    { title: "비즈니스 3", img: "https://via.placeholder.com/80x120?text=Business3", description: "효율적인 팀워크" },
+                    { title: "비즈니스 4", img: "https://via.placeholder.com/80x120?text=Business4", description: "리더십 기술" }
+                ],
+                // 다른 장르에 대한 도서 목록도 추가 가능
+            };
+
+            // 결과 표시 영역
+            const resultDiv = document.getElementById("result");
+            const booksDiv = document.getElementById("books");
+
+            booksDiv.innerHTML = ""; // 이전 결과 초기화
+
+            // 선택한 장르에 맞는 도서 추천
+            if (books[genre]) {
+                books[genre].forEach(book => {
+                    const bookDiv = document.createElement("div");
+                    bookDiv.classList.add("book");
+                    bookDiv.innerHTML = `
+                        <img src="${book.img}" alt="${book.title}">
+                        <div class="book-info">
+                            <h3>${book.title}</h3>
+                            <p>${book.description}</p>
+                        </div>
+                    `;
+                    booksDiv.appendChild(bookDiv);
+                });
+                resultDiv.style.display = "block"; // 결과 영역 표시
+            } else {
+                resultDiv.style.display = "none"; // 결과가 없으면 숨기기
+            }
+        }
+    </script>
 </body>
 </html>
